@@ -1,0 +1,54 @@
+Курсова робота студента КПІ ФПМ групи КВ-23 Чугаєвського Максима Варіант 1
+Згенеровано: 11/15/2015 21:15:39
+  1 0000                         Data1 segment
+  2 0000    93                   	dbVar1 db 10010011b
+  3 0001    0ABC                 	dwVar2 dw 0ABCh
+  4 0003    009A2112             	ddVar3 dd 10101010
+  5 0007                         	Data1 ends
+  6 0000                         	Data2 segment
+  7 0000    48 65 6C 6C 6F 21    	STR4 db 'Hello!'
+  8 0006    009A2112             	ddVar5 dd 10101010
+  9 000A                         Data2 ends
+
+                             assume ds:Data1, cs:Code, es:Data2
+ 12 0000                         Code segment
+ 13 0000                         	begin:
+ 14 0000    55                   		tmp db 55h
+ 15 0001    FA                   		Cli
+ 16 0002    26: FE 87 0000       		Inc STR4[bx]
+ 17 0007    FE C8                		Dec al
+ 18 0009    67| 4B               		Dec ebx
+ 19 000B    2E: 80 84 0000 11    		Add cs:dbVar1[si], 00010001b
+ 20 0011    67| 3B 98 00000001   		Cmp bx, dwVar2[eax]
+ 21 0018    2E: 67| 30 8D 00000000 		Xor tmp[ebp], cl
+ 22 0020    B4 80                		Mov ah, 128
+ 23 0022    66| 0B F0            		Or esi, eax
+ 24 0025    72 05 90 90          		jb labelJB
+ 25 0029                         	labelUP:
+ 26 0029    EB 05 90             		jmp labelDW
+ 27 002C                         	labelJB:
+ 28 002C    EB FB                		jmp labelUP
+ 29 002E    72 D0                		jb begin
+ 30 0030                         	labelDW:
+ 31 0030                         Code ends
+ 32 0030                         end begin
+
+Сегмент  Розмір
+Data1    0007
+Data2    000A
+Code     0030
+
+Ім'я     Тип      Адреса
+dbVar1   DB       Data1:0000
+dwVar2   DW       Data1:0001
+ddVar3   DD       Data1:0003
+STR4     DB       Data2:0000
+ddVar5   DD       Data2:0006
+begin    LABEL    Code:0000
+tmp      DB       Code:0000
+labelUP  LABEL    Code:0029
+labelJB  LABEL    Code:002C
+labelDW  LABEL    Code:0030
+
+Помилки: 0
+
