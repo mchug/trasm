@@ -10,7 +10,7 @@ import trasm.LineInfo.LineType;
 /**
  * Главный класс транслятора
  */
-class Transtalor {
+class Translator {
 
     /**
      * Глобальный флаг первого/второго прохода
@@ -155,7 +155,13 @@ class Transtalor {
      * Описание работы программы
      */
     private static void showHelp() {
-        System.out.println("Використання: trasm [asmFile] [lstFile] [-options]");
+        String jarName = new java.io.File(Translator.class.getProtectionDomain()
+                .getCodeSource()
+                .getLocation()
+                .getPath())
+                .getName();
+
+        System.out.println("Використання: java -jar " + jarName + " [asmFile] [lstFile] [-options]");
         System.out.println("Довідка: ");
         System.out.println("[asmFile] - шлях до файлу з початковим кодом мовою ассемблер");
         System.out.println("[lstFile] - шлях до вихідного файлу лістингу");
@@ -164,9 +170,9 @@ class Transtalor {
         System.out.println("    -l - генерація файлу лексичного аналізу за шляхом [lstFile].lex");
         System.out.println("    -a - виведення інформації(у файлі лістингу) про Assume");
         System.out.println("    -c - виведення лістингу на екран");
-        System.out.println("\nПриклад: trasm source out");
-        System.out.println("trasm src.asm out.lst -c");
-        System.out.println("trasm test.asm test -af");
+        System.out.println("\nПриклад: java -jar " + jarName + " source out");
+        System.out.println("java -jar " + jarName + " src.asm out.lst -c");
+        System.out.println("java -jar " + jarName + " test.asm test -af");
     }
 
     public static void main(String[] args) {

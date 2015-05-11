@@ -623,7 +623,7 @@ class LineInfo {
                 idInfo = (IdInfo) (idTable.get(lexemes[1].value));
 
                 if (idInfo == null) {
-                    if (Transtalor.isSecondPass) {
+                    if (Translator.isSecondPass) {
                         isCorrect = false;
                         return "";
                     }
@@ -643,7 +643,7 @@ class LineInfo {
                 idInfo = (IdInfo) (idTable.get(lexemes[1].value));
 
                 if (idInfo == null) {
-                    if (Transtalor.isSecondPass) {
+                    if (Translator.isSecondPass) {
                         isCorrect = false;
                         return "";
                     }
